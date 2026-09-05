@@ -1,7 +1,7 @@
 const CONFIG = {
-  bookingEmail: "your-email@example.com",
-  upiId: "",
-  qrImage: ""
+  bookingEmail: "sahil.dayanand1112@gmail.com",
+  upiId: "sahil.dayanand1112-3@okicici",
+  qrImage: "assets/payment-qr.png"
 };
 
 const devices = {
@@ -41,7 +41,7 @@ const devices = {
 };
 
 let activeDevice = "midnight";
-let selectedSpot = null;
+let selectedSpots = [];
 let uploadedLogo = "";
 const money = value => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(value);
 const $ = selector => document.querySelector(selector);
@@ -55,53 +55,71 @@ function renderDevice() {
   surface.style.top = `${device.surface.top}%`;
   surface.style.width = `${device.surface.width}%`;
   surface.style.height = `${device.surface.height}%`;
-  $("#slot-layer").innerHTML = device.positions.map((spot, index) =>
-    `<button class="slot" style="--slot-left:${spot.left}%;--slot-top:${spot.top}%;--slot-width:${spot.width}%;--slot-height:${spot.height}%" data-index="${index}" aria-label="Section ${index + 1}, ${spot.name}, ${money(spot.price)} for 50 days"><span class="slot-number">${index + 1}</span></button>`
-  ).join("");
-  selectedSpot = null;
+  $("#slot-layer").innerHTML = device.positions.map((spot, index) => {
+    const active = selectedSpots.some(item => item.device === activeDevice && item.index === index);
+    return `<button class="slot${active ? " active" : ""}" style="--slot-left:${spot.left}%;--slot-top:${spot.top}%;--slot-width:${spot.width}%;--slot-height:${spot.height}%" data-index="${index}" aria-pressed="${active}" aria-label="Section ${index + 1}, ${spot.name}, ${money(spot.price)} for 50 days"><span class="slot-number">${index + 1}</span></button>`;
+  }).join("");
+  renderLogoPreviews();
   updateSelection();
 }
 
 function selectSpot(index) {
-  selectedSpot = { device: activeDevice, index, ...devices[activeDevice].positions[index] };
-  document.querySelectorAll(".slot").forEach((slot, i) => slot.classList.toggle("active", i === index));
-  updateSelection();
+  const existing = selectedSpots.findIndex(item => item.device === activeDevice && item.index === index);
+  if (existing >= 0) {
+    selectedSpots.splice(existing, 1);
+    showToast(`Spot ${index + 1} removed.`);
+  } else {
+    selectedSpots.push({ device: activeDevice, index, ...devices[activeDevice].positions[index] });
+    showToast(`Spot ${index + 1} selected. Select more or tap again to remove.`);
+  }
+  renderDevice();
 }
 
 function updateSelection() {
   const empty = $("#selection-empty");
   const details = $("#selection-details");
-  if (!selectedSpot) {
+  if (selectedSpots.length === 0) {
     empty.hidden = false; details.hidden = true;
     $("#checkout-title").textContent = "Select a spot first";
     $("#checkout-subtitle").textContent = "Choose from the live inventory above";
     $("#checkout-price").textContent = "—";
     $("#checkout-total").textContent = "—";
-    $("#logo-preview").hidden = true;
+    $("#selected-placements-input").value = "";
+    $("#booking-total-input").value = "";
+    renderLogoPreviews();
     return;
   }
-  const device = devices[selectedSpot.device];
+  const firstSpot = selectedSpots[0];
+  const device = devices[firstSpot.device];
+  const total = selectedSpots.reduce((sum, spot) => sum + spot.price, 0);
+  const placementSummary = selectedSpots.map(spot => `${devices[spot.device].name} — spot ${spot.index + 1} (${spot.name})`).join("; ");
   empty.hidden = true; details.hidden = false;
-  $("#selection-number").textContent = String(selectedSpot.index + 1).padStart(2,"0");
-  $("#selection-device").textContent = device.name;
-  $("#selection-name").textContent = selectedSpot.name;
-  $("#selection-tier").textContent = selectedSpot.tier;
-  $("#selection-price").textContent = money(selectedSpot.price);
+  $("#selection-number").textContent = String(selectedSpots.length).padStart(2,"0");
+  $("#selection-device").textContent = `${selectedSpots.length} ${selectedSpots.length === 1 ? "spot" : "spots"} selected`;
+  $("#selection-name").textContent = selectedSpots.map(spot => `${spot.device === "midnight" ? "Midnight" : "Sky Blue"} ${spot.index + 1}`).join(" · ");
+  $("#selection-tier").textContent = `${selectedSpots.length} ${selectedSpots.length === 1 ? "section" : "sections"}`;
+  $("#selection-price").textContent = money(total);
   $("#checkout-image").src = device.image;
-  $("#checkout-title").textContent = `${device.name} · Spot ${String(selectedSpot.index + 1).padStart(2,"0")}`;
-  $("#checkout-subtitle").textContent = `${selectedSpot.name} · ${selectedSpot.tier}`;
-  $("#checkout-price").textContent = money(selectedSpot.price);
-  $("#checkout-total").textContent = money(selectedSpot.price);
-  if (uploadedLogo) positionLogo();
+  $("#checkout-title").textContent = `${selectedSpots.length} ${selectedSpots.length === 1 ? "placement" : "placements"} selected`;
+  $("#checkout-subtitle").textContent = selectedSpots.map(spot => `${spot.device === "midnight" ? "Midnight" : "Sky Blue"} ${spot.index + 1}`).join(" · ");
+  $("#checkout-price").textContent = money(total);
+  $("#checkout-total").textContent = money(total);
+  $("#selected-placements-input").value = placementSummary;
+  $("#booking-total-input").value = `${money(total)} for 50 days`;
+  renderLogoPreviews();
 }
 
-function positionLogo() {
-  if (!selectedSpot || !uploadedLogo) return;
-  const preview = $("#logo-preview");
-  preview.hidden = false;
-  preview.style.left = `${selectedSpot.x}%`;
-  preview.style.top = `${selectedSpot.y}%`;
-  preview.querySelector("img").src = uploadedLogo;
+function renderLogoPreviews() {
+  const layer = $("#logo-preview-layer");
+  if (!layer) return;
+  if (!uploadedLogo) {
+    layer.innerHTML = "";
+    return;
+  }
+  layer.innerHTML = selectedSpots
+    .filter(spot => spot.device === activeDevice)
+    .map(spot => `<div class="logo-preview" style="left:${spot.x}%;top:${spot.y}%"><img src="${uploadedLogo}" alt=""></div>`)
+    .join("");
 }
 
 function showToast(message) {
@@ -135,7 +153,7 @@ $("#logo-upload").addEventListener("change", event => {
   if (!file) return;
   if (file.size > 5 * 1024 * 1024) { showToast("Please choose an image smaller than 5 MB."); event.target.value = ""; return; }
   const reader = new FileReader();
-  reader.onload = () => { uploadedLogo = reader.result; $("#upload-title").textContent = file.name; positionLogo(); showToast("Logo loaded — choose a spot to preview it."); };
+  reader.onload = () => { uploadedLogo = reader.result; $("#upload-title").textContent = file.name; renderLogoPreviews(); showToast("Artwork loaded and ready to send."); };
   reader.readAsDataURL(file);
 });
 
@@ -153,21 +171,30 @@ $("#copy-upi").addEventListener("click", async () => {
 
 $("#booking-form").addEventListener("submit", event => {
   event.preventDefault();
-  if (!selectedSpot) { showToast("Please choose an advertising spot first."); $("#inventory").scrollIntoView({ behavior: "smooth" }); return; }
-  const data = new FormData(event.currentTarget);
-  const subject = `Adplace booking — ${data.get("brand")} — ${devices[selectedSpot.device].name} spot ${selectedSpot.index + 1}`;
-  const body = [
-    "Hi, I would like to book an Adplace spot.", "",
-    `Brand: ${data.get("brand")}`, `Name: ${data.get("name")}`, `Email: ${data.get("email")}`,
-    `Website: ${data.get("url") || "Not provided"}`, `Placement: ${devices[selectedSpot.device].name}, spot ${selectedSpot.index + 1} (${selectedSpot.name})`,
-    `Duration: 50 days`, `Rate: $1 per day`, `Total: ${money(selectedSpot.price)}`, `Transaction ID: ${data.get("transaction") || "Will provide after payment"}`,
-    `Campaign note: ${data.get("note") || "None"}`, "", "I will attach my artwork and payment screenshot to this email."
-  ].join("\n");
-  if (CONFIG.bookingEmail === "your-email@example.com") {
-    navigator.clipboard.writeText(`${subject}\n\n${body}`);
-    showToast("Booking brief copied. Add your email in script.js to enable direct booking.");
+  if (selectedSpots.length === 0) {
+    showToast("Please choose at least one advertising spot first.");
+    $("#inventory").scrollIntoView({ behavior: "smooth" });
     return;
   }
+  updateSelection();
+  const data = new FormData(event.currentTarget);
+  const total = selectedSpots.reduce((sum, spot) => sum + spot.price, 0);
+  const placements = selectedSpots.map(spot => `${devices[spot.device].name}, spot ${spot.index + 1} (${spot.name})`).join("; ");
+  const subject = `Adplace booking — ${data.get("brand")} — ${selectedSpots.length} ${selectedSpots.length === 1 ? "spot" : "spots"}`;
+  const body = [
+    "Hi, I would like to book Adplace spots.", "",
+    `Brand: ${data.get("brand")}`,
+    `Name: ${data.get("name")}`,
+    `Email: ${data.get("email")}`,
+    `Website: ${data.get("url") || "Not provided"}`,
+    `Placements: ${placements}`,
+    "Duration: 50 days",
+    "Rate: $50 per spot",
+    `Total: ${money(total)}`,
+    `Transaction ID: ${data.get("transaction") || "Will provide after payment"}`,
+    `Campaign note: ${data.get("note") || "None"}`, "",
+    "Please attach the artwork selected on the website before sending."
+  ].join("\n");
   window.location.href = `mailto:${CONFIG.bookingEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 });
 
