@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260905-hero2">
+  <link rel="stylesheet" href="styles.css?v=20260905-final">
 </head>
 <body>
   <header class="site-header">
@@ -100,7 +100,7 @@
           <div class="ad-surface" id="ad-surface" aria-label="Dotted advertising boundary">
             <span class="surface-label">AVAILABLE AD AREA</span>
             <div class="slot-layer" id="slot-layer" aria-label="Advertising positions"></div>
-            <div class="logo-preview" id="logo-preview" hidden><img alt="Your uploaded logo preview"></div>
+            <div class="logo-preview-layer" id="logo-preview-layer" aria-hidden="true"></div>
           </div>
           <div class="stage-tip">Choose a dotted section · $50 for 50 days</div>
         </div>
@@ -156,10 +156,12 @@
           <p class="section-kicker">03 / BOOK YOUR SPOT</p>
           <h2 id="book-title">Put your brand in motion.</h2>
         </div>
-        <p>Complete the details below. Nothing is submitted automatically; you review everything before preparing your booking email.</p>
+        <p>Select one or more positions, upload your artwork and submit the booking. The complete request is delivered directly for review.</p>
       </div>
 
       <form class="booking-grid" id="booking-form">
+        <input type="hidden" name="Selected placements" id="selected-placements-input">
+        <input type="hidden" name="Booking total" id="booking-total-input">
         <div class="booking-form-panel">
           <div class="form-step">
             <span>1</span><h3>Campaign details</h3>
@@ -176,7 +178,7 @@
             <span>2</span><h3>Preview your creative</h3>
           </div>
           <label class="upload-zone" for="logo-upload">
-            <input id="logo-upload" name="logo" type="file" accept="image/png,image/jpeg,image/webp">
+            <input id="logo-upload" name="Artwork attachment" type="file" accept="image/png,image/jpeg,image/webp" required>
             <span class="upload-icon">↑</span>
             <strong id="upload-title">Upload your logo or sticker artwork</strong>
             <small>PNG, JPG or WEBP · transparent PNG works best</small>
@@ -196,14 +198,14 @@
           </div>
           <div class="payment-box">
             <div class="qr-placeholder" id="qr-placeholder">
-              <span>QR</span><small>Payment QR<br>coming soon</small>
+              <img src="assets/payment-qr.png" alt="UPI payment QR code for Sahil Dayanand Chavan">
             </div>
-            <div><span>PAYMENT OPTION</span><strong id="upi-id">Payment details coming soon</strong><button type="button" id="copy-upi" disabled>Copy payment ID</button></div>
+            <div><span>PAY WITH ANY UPI APP</span><strong id="upi-id">sahil.dayanand1112-3@okicici</strong><button type="button" id="copy-upi">Copy UPI ID</button></div>
           </div>
           <label>Payment transaction ID<input name="transaction" placeholder="Add after payment"></label>
           <label class="consent"><input type="checkbox" name="consent" required><span>I confirm that I own or have permission to use this artwork.</span></label>
-          <button class="button button-accent full-width" type="submit">Prepare booking email <span aria-hidden="true">↗</span></button>
-          <p class="checkout-note">You’ll attach your artwork and payment screenshot in your email. Placement begins after manual confirmation.</p>
+          <button class="button button-accent full-width" id="submit-booking" type="submit">Prepare booking email <span aria-hidden="true">↗</span></button>
+          <p class="checkout-note">Your booking details open in your email app. Attach the selected artwork before sending it for approval.</p>
         </aside>
       </form>
     </section>
@@ -229,6 +231,6 @@
   </footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="script.js?v=20260905-hero2"></script>
+  <script src="script.js?v=20260905-final"></script>
 </body>
 </html>
