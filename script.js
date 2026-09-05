@@ -17,7 +17,8 @@ const devices = {
       { x: 13, y: 82, left: 2, top: 66, width: 22, height: 32, name: "Bottom-left", tier: "One section", price: 50 },
       { x: 37, y: 82, left: 26, top: 66, width: 22, height: 32, name: "Bottom-centre left", tier: "One section", price: 50 },
       { x: 61, y: 82, left: 50, top: 66, width: 22, height: 32, name: "Bottom-centre right", tier: "One section", price: 50 },
-      { x: 85, y: 50, left: 74, top: 38, width: 22, height: 24, name: "Right-centre", tier: "One section", price: 50 }
+      { x: 85, y: 50, left: 74, top: 38, width: 22, height: 24, name: "Right-centre", tier: "One section", price: 50 },
+      { x: 13, y: 50, left: 2, top: 38, width: 22, height: 24, name: "Left-centre", tier: "One section", price: 50 }
     ]
   },
   silver: {
@@ -32,7 +33,9 @@ const devices = {
       { x: 13, y: 82, left: 2, top: 66, width: 22, height: 32, name: "Bottom-left", tier: "One section", price: 50 },
       { x: 37, y: 82, left: 26, top: 66, width: 22, height: 32, name: "Bottom-centre left", tier: "One section", price: 50 },
       { x: 61, y: 82, left: 50, top: 66, width: 22, height: 32, name: "Bottom-centre right", tier: "One section", price: 50 },
-      { x: 85, y: 82, left: 74, top: 66, width: 22, height: 32, name: "Bottom-right", tier: "One section", price: 50 }
+      { x: 85, y: 82, left: 74, top: 66, width: 22, height: 32, name: "Bottom-right", tier: "One section", price: 50 },
+      { x: 13, y: 50, left: 2, top: 38, width: 22, height: 24, name: "Left-centre", tier: "One section", price: 50 },
+      { x: 85, y: 50, left: 74, top: 38, width: 22, height: 24, name: "Right-centre", tier: "One section", price: 50 }
     ]
   }
 };
@@ -46,7 +49,7 @@ const $ = selector => document.querySelector(selector);
 function renderDevice() {
   const device = devices[activeDevice];
   $("#device-image").src = device.image;
-  $("#device-image").alt = `${device.name} with eight selectable advertising positions`;
+  $("#device-image").alt = `${device.name} with ${device.positions.length} selectable advertising positions`;
   const surface = $("#ad-surface");
   surface.style.left = `${device.surface.left}%`;
   surface.style.top = `${device.surface.top}%`;
