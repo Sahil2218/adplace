@@ -30,7 +30,7 @@
       <div class="hero-copy">
         <div class="eyebrow"><span class="live-dot"></span> Bengaluru · placements open</div>
         <h1 id="hero-title">Your brand.<br><span>On my Mac.</span><br>In the wild.</h1>
-        <p class="hero-lede">Turn everyday screen time into real-world visibility. Pick one of 16 physical spots across two daily-use MacBooks and see your brand placed within 24 hours.</p>
+        <p class="hero-lede">Book a real sticker placement for 50 days. Every spot is $50—just $1 per day—and your brand is placed within 24 hours of confirmation.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#inventory">Choose your spot <span aria-hidden="true">↓</span></a>
           <a class="text-link" href="#process">See how it works <span aria-hidden="true">→</span></a>
@@ -42,8 +42,8 @@
         <div class="floating-card card-a"><b>16</b><span>total positions</span></div>
         <div class="floating-card card-b"><b>&lt;24h</b><span>placement</span></div>
         <div class="laptop-stack">
-          <img class="hero-mac hero-mac-back" src="assets/macbook-silver.jpeg" alt="Silver MacBook available for advertising">
-          <img class="hero-mac hero-mac-front" src="assets/macbook-midnight.jpeg" alt="Midnight MacBook available for advertising">
+          <img class="hero-mac hero-mac-back" src="assets/macbook-silver-studio.jpg" alt="Silver MacBook available for advertising">
+          <img class="hero-mac hero-mac-front" src="assets/macbook-midnight-studio.jpg" alt="Midnight MacBook available for advertising">
         </div>
       </div>
     </section>
@@ -78,10 +78,13 @@
 
       <div class="inventory-grid" id="device-panel" role="tabpanel">
         <div class="placement-stage" id="placement-stage">
-          <img id="device-image" src="assets/macbook-midnight.jpeg" alt="Midnight MacBook with eight selectable advertising positions">
-          <div class="slot-layer" id="slot-layer" aria-label="Advertising positions"></div>
-          <div class="logo-preview" id="logo-preview" hidden><img alt="Your uploaded logo preview"></div>
-          <div class="stage-tip">Tap a number to preview your spot</div>
+          <img id="device-image" src="assets/macbook-midnight-studio.jpg" alt="Midnight MacBook with eight selectable advertising positions">
+          <div class="ad-surface" id="ad-surface" aria-label="Dotted advertising boundary">
+            <span class="surface-label">AVAILABLE AD AREA</span>
+            <div class="slot-layer" id="slot-layer" aria-label="Advertising positions"></div>
+            <div class="logo-preview" id="logo-preview" hidden><img alt="Your uploaded logo preview"></div>
+          </div>
+          <div class="stage-tip">Choose a circle · $50 for 50 days</div>
         </div>
 
         <aside class="selection-card" aria-live="polite">
@@ -98,11 +101,11 @@
               <h3 id="selection-name">Top-left</h3>
             </div>
             <dl>
-              <div><dt>Position</dt><dd id="selection-tier">Standard</dd></div>
-              <div><dt>Duration</dt><dd>7 days</dd></div>
+              <div><dt>Placement</dt><dd id="selection-tier">One spot</dd></div>
+              <div><dt>Duration</dt><dd>50 days</dd></div>
               <div><dt>Photo proof</dt><dd>Included</dd></div>
             </dl>
-            <div class="price-line"><span>Launch price</span><strong id="selection-price">₹499</strong></div>
+            <div class="price-line"><span>$1 per day</span><strong id="selection-price">$50</strong></div>
             <button class="button button-primary full-width" id="continue-button">Continue to booking <span aria-hidden="true">→</span></button>
           </div>
         </aside>
@@ -165,19 +168,19 @@
         <aside class="checkout-panel">
           <div class="checkout-head"><span>ORDER SUMMARY</span><button type="button" id="change-spot">Change spot</button></div>
           <div class="checkout-item">
-            <img id="checkout-image" src="assets/macbook-midnight.jpeg" alt="Selected laptop">
+            <img id="checkout-image" src="assets/macbook-midnight-studio.jpg" alt="Selected laptop">
             <div><strong id="checkout-title">Select a spot first</strong><span id="checkout-subtitle">Choose from the live inventory above</span></div>
           </div>
           <div class="checkout-lines">
-            <div><span>7-day placement</span><b id="checkout-price">—</b></div>
+            <div><span>50-day placement</span><b id="checkout-price">—</b></div>
             <div><span>Photo proof</span><b>Included</b></div>
             <div class="checkout-total"><span>Total</span><b id="checkout-total">—</b></div>
           </div>
           <div class="payment-box">
             <div class="qr-placeholder" id="qr-placeholder">
-              <span>QR</span><small>Payment QR<br>will appear here</small>
+              <span>QR</span><small>Payment QR<br>coming soon</small>
             </div>
-            <div><span>PAY VIA UPI</span><strong id="upi-id">UPI ID coming soon</strong><button type="button" id="copy-upi" disabled>Copy UPI ID</button></div>
+            <div><span>PAYMENT OPTION</span><strong id="upi-id">Payment details coming soon</strong><button type="button" id="copy-upi" disabled>Copy payment ID</button></div>
           </div>
           <label>Payment transaction ID<input name="transaction" placeholder="Add after payment"></label>
           <label class="consent"><input type="checkbox" name="consent" required><span>I confirm that I own or have permission to use this artwork.</span></label>
@@ -192,7 +195,7 @@
         <div><p class="section-kicker">04 / GOOD TO KNOW</p><h2 id="faq-title">Small print, plain English.</h2></div>
       </div>
       <div class="faq-list">
-        <details><summary>How long does the ad stay on the laptop?<span>+</span></summary><p>The launch package includes seven days. Longer campaigns and placements across both laptops can be arranged by email.</p></details>
+        <details><summary>How long does the ad stay on the laptop?<span>+</span></summary><p>Each $50 booking keeps one approved sticker in your selected position for 50 days—equivalent to $1 per day.</p></details>
         <details><summary>What artwork should I send?<span>+</span></summary><p>A high-resolution PNG is ideal. Simple logos with good contrast work best at sticker size. Final size is confirmed before printing.</p></details>
         <details><summary>What proof will I receive?<span>+</span></summary><p>You’ll receive a clear, timestamped photo of the sticker applied in your selected position, sent to the email used for booking.</p></details>
         <details><summary>Can a campaign be rejected?<span>+</span></summary><p>Yes. Illegal, hateful, misleading, adult, political, gambling, or unsafe promotions are not accepted. If artwork is declined, payment is refunded.</p></details>

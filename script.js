@@ -7,30 +7,32 @@ const CONFIG = {
 const devices = {
   midnight: {
     name: "Midnight MacBook",
-    image: "assets/macbook-midnight.jpeg",
+    image: "assets/macbook-midnight-studio.jpg",
+    surface: { left: 18.5, top: 14.5, width: 63, height: 62 },
     positions: [
-      { x: 23, y: 26, name: "Top-left", tier: "Standard", price: 499 },
-      { x: 40, y: 24, name: "Upper-left", tier: "Standard", price: 499 },
-      { x: 59, y: 24, name: "Upper-right", tier: "Standard", price: 499 },
-      { x: 76, y: 27, name: "Top-right", tier: "Standard", price: 499 },
-      { x: 23, y: 63, name: "Lower-left", tier: "Standard", price: 499 },
-      { x: 40, y: 65, name: "Bottom-left", tier: "Premium", price: 699 },
-      { x: 59, y: 65, name: "Bottom-right", tier: "Premium", price: 699 },
-      { x: 75, y: 61, name: "Lower-right", tier: "Premium", price: 699 }
+      { x: 15, y: 20, name: "Top-left", tier: "One spot", price: 50 },
+      { x: 38, y: 20, name: "Upper-left", tier: "One spot", price: 50 },
+      { x: 62, y: 20, name: "Upper-right", tier: "One spot", price: 50 },
+      { x: 85, y: 20, name: "Top-right", tier: "One spot", price: 50 },
+      { x: 15, y: 76, name: "Lower-left", tier: "One spot", price: 50 },
+      { x: 38, y: 76, name: "Bottom-left", tier: "One spot", price: 50 },
+      { x: 62, y: 76, name: "Bottom-right", tier: "One spot", price: 50 },
+      { x: 85, y: 52, name: "Right-centre", tier: "One spot", price: 50 }
     ]
   },
   silver: {
     name: "Silver MacBook",
-    image: "assets/macbook-silver.jpeg",
+    image: "assets/macbook-silver-studio.jpg",
+    surface: { left: 15.5, top: 10.5, width: 69, height: 69 },
     positions: [
-      { x: 33, y: 25, name: "Top-left", tier: "Standard", price: 499 },
-      { x: 48, y: 23, name: "Top-centre", tier: "Standard", price: 499 },
-      { x: 64, y: 25, name: "Top-right", tier: "Standard", price: 499 },
-      { x: 32, y: 44, name: "Middle-left", tier: "Premium", price: 699 },
-      { x: 66, y: 44, name: "Middle-right", tier: "Premium", price: 699 },
-      { x: 34, y: 64, name: "Bottom-left", tier: "Standard", price: 499 },
-      { x: 49, y: 68, name: "Bottom-centre", tier: "Premium", price: 699 },
-      { x: 65, y: 64, name: "Bottom-right", tier: "Standard", price: 499 }
+      { x: 15, y: 20, name: "Top-left", tier: "One spot", price: 50 },
+      { x: 38, y: 20, name: "Upper-left", tier: "One spot", price: 50 },
+      { x: 62, y: 20, name: "Upper-right", tier: "One spot", price: 50 },
+      { x: 85, y: 20, name: "Top-right", tier: "One spot", price: 50 },
+      { x: 15, y: 78, name: "Lower-left", tier: "One spot", price: 50 },
+      { x: 38, y: 78, name: "Bottom-left", tier: "One spot", price: 50 },
+      { x: 62, y: 78, name: "Bottom-right", tier: "One spot", price: 50 },
+      { x: 85, y: 78, name: "Lower-right", tier: "One spot", price: 50 }
     ]
   }
 };
@@ -38,15 +40,20 @@ const devices = {
 let activeDevice = "midnight";
 let selectedSpot = null;
 let uploadedLogo = "";
-const money = value => new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(value);
+const money = value => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(value);
 const $ = selector => document.querySelector(selector);
 
 function renderDevice() {
   const device = devices[activeDevice];
   $("#device-image").src = device.image;
   $("#device-image").alt = `${device.name} with eight selectable advertising positions`;
+  const surface = $("#ad-surface");
+  surface.style.left = `${device.surface.left}%`;
+  surface.style.top = `${device.surface.top}%`;
+  surface.style.width = `${device.surface.width}%`;
+  surface.style.height = `${device.surface.height}%`;
   $("#slot-layer").innerHTML = device.positions.map((spot, index) =>
-    `<button class="slot" style="left:${spot.x}%;top:${spot.y}%" data-index="${index}" aria-label="Spot ${index + 1}, ${spot.name}, ${money(spot.price)}">${String(index + 1).padStart(2,"0")}</button>`
+    `<button class="slot" style="left:${spot.x}%;top:${spot.y}%" data-index="${index}" aria-label="Spot ${index + 1}, ${spot.name}, ${money(spot.price)} for 50 days">${index + 1}</button>`
   ).join("");
   selectedSpot = null;
   updateSelection();
@@ -150,7 +157,7 @@ $("#booking-form").addEventListener("submit", event => {
     "Hi, I would like to book an Adplace spot.", "",
     `Brand: ${data.get("brand")}`, `Name: ${data.get("name")}`, `Email: ${data.get("email")}`,
     `Website: ${data.get("url") || "Not provided"}`, `Placement: ${devices[selectedSpot.device].name}, spot ${selectedSpot.index + 1} (${selectedSpot.name})`,
-    `Duration: 7 days`, `Total: ${money(selectedSpot.price)}`, `Transaction ID: ${data.get("transaction") || "Will provide after payment"}`,
+    `Duration: 50 days`, `Rate: $1 per day`, `Total: ${money(selectedSpot.price)}`, `Transaction ID: ${data.get("transaction") || "Will provide after payment"}`,
     `Campaign note: ${data.get("note") || "None"}`, "", "I will attach my artwork and payment screenshot to this email."
   ].join("\n");
   if (CONFIG.bookingEmail === "your-email@example.com") {

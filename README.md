@@ -4,8 +4,9 @@ A static, GitHub Pages-ready website for selling physical advertising positions 
 
 ## What is included
 
-- Two real MacBook photos
+- Two studio-cleaned, horizontally aligned MacBook photos
 - Eight selectable ad positions per device
+- Dotted advertising boundary with numbered position circles
 - Live price and placement preview
 - Client-side logo upload preview
 - Booking details and payment summary
@@ -24,7 +25,7 @@ const CONFIG = {
 };
 ```
 
-Then add your payment QR image at `assets/payment-qr.jpeg`. Prices are also in `script.js`, inside each laptop's `positions` list.
+Then add your payment QR image at `assets/payment-qr.jpeg`. The current offer is $50 per position for 50 days ($1/day). Prices are also in `script.js`, inside each laptop's `positions` list.
 
 ## Publish with GitHub Pages
 
