@@ -10,29 +10,29 @@ const devices = {
     image: "assets/macbook-midnight-studio.jpg",
     surface: { left: 18.5, top: 14.5, width: 63, height: 62 },
     positions: [
-      { x: 12.5, y: 25, name: "Top-left", tier: "One section", price: 50 },
-      { x: 37.5, y: 25, name: "Top-centre left", tier: "One section", price: 50 },
-      { x: 62.5, y: 25, name: "Top-centre right", tier: "One section", price: 50 },
-      { x: 87.5, y: 25, name: "Top-right", tier: "One section", price: 50 },
-      { x: 12.5, y: 75, name: "Bottom-left", tier: "One section", price: 50 },
-      { x: 37.5, y: 75, name: "Bottom-centre left", tier: "One section", price: 50 },
-      { x: 62.5, y: 75, name: "Bottom-centre right", tier: "One section", price: 50 },
-      { x: 87.5, y: 75, name: "Bottom-right", tier: "One section", price: 50 }
+      { x: 13, y: 18, left: 2, top: 2, width: 22, height: 32, name: "Top-left", tier: "One section", price: 50 },
+      { x: 37, y: 18, left: 26, top: 2, width: 22, height: 32, name: "Top-centre left", tier: "One section", price: 50 },
+      { x: 61, y: 18, left: 50, top: 2, width: 22, height: 32, name: "Top-centre right", tier: "One section", price: 50 },
+      { x: 85, y: 18, left: 74, top: 2, width: 22, height: 32, name: "Top-right", tier: "One section", price: 50 },
+      { x: 13, y: 82, left: 2, top: 66, width: 22, height: 32, name: "Bottom-left", tier: "One section", price: 50 },
+      { x: 37, y: 82, left: 26, top: 66, width: 22, height: 32, name: "Bottom-centre left", tier: "One section", price: 50 },
+      { x: 61, y: 82, left: 50, top: 66, width: 22, height: 32, name: "Bottom-centre right", tier: "One section", price: 50 },
+      { x: 85, y: 50, left: 74, top: 38, width: 22, height: 24, name: "Right-centre", tier: "One section", price: 50 }
     ]
   },
   silver: {
     name: "Sky Blue M4 MacBook Air",
-    image: "assets/macbook-silver-studio.jpg",
+    image: "assets/macbook-sky-blue-studio.jpg",
     surface: { left: 15.5, top: 10.5, width: 69, height: 69 },
     positions: [
-      { x: 12.5, y: 25, name: "Top-left", tier: "One section", price: 50 },
-      { x: 37.5, y: 25, name: "Top-centre left", tier: "One section", price: 50 },
-      { x: 62.5, y: 25, name: "Top-centre right", tier: "One section", price: 50 },
-      { x: 87.5, y: 25, name: "Top-right", tier: "One section", price: 50 },
-      { x: 12.5, y: 75, name: "Bottom-left", tier: "One section", price: 50 },
-      { x: 37.5, y: 75, name: "Bottom-centre left", tier: "One section", price: 50 },
-      { x: 62.5, y: 75, name: "Bottom-centre right", tier: "One section", price: 50 },
-      { x: 87.5, y: 75, name: "Bottom-right", tier: "One section", price: 50 }
+      { x: 13, y: 18, left: 2, top: 2, width: 22, height: 32, name: "Top-left", tier: "One section", price: 50 },
+      { x: 37, y: 18, left: 26, top: 2, width: 22, height: 32, name: "Top-centre left", tier: "One section", price: 50 },
+      { x: 61, y: 18, left: 50, top: 2, width: 22, height: 32, name: "Top-centre right", tier: "One section", price: 50 },
+      { x: 85, y: 18, left: 74, top: 2, width: 22, height: 32, name: "Top-right", tier: "One section", price: 50 },
+      { x: 13, y: 82, left: 2, top: 66, width: 22, height: 32, name: "Bottom-left", tier: "One section", price: 50 },
+      { x: 37, y: 82, left: 26, top: 66, width: 22, height: 32, name: "Bottom-centre left", tier: "One section", price: 50 },
+      { x: 61, y: 82, left: 50, top: 66, width: 22, height: 32, name: "Bottom-centre right", tier: "One section", price: 50 },
+      { x: 85, y: 82, left: 74, top: 66, width: 22, height: 32, name: "Bottom-right", tier: "One section", price: 50 }
     ]
   }
 };
@@ -53,7 +53,7 @@ function renderDevice() {
   surface.style.width = `${device.surface.width}%`;
   surface.style.height = `${device.surface.height}%`;
   $("#slot-layer").innerHTML = device.positions.map((spot, index) =>
-    `<button class="slot" data-index="${index}" aria-label="Section ${index + 1}, ${spot.name}, ${money(spot.price)} for 50 days"><span class="slot-number">${index + 1}</span></button>`
+    `<button class="slot" style="--slot-left:${spot.left}%;--slot-top:${spot.top}%;--slot-width:${spot.width}%;--slot-height:${spot.height}%" data-index="${index}" aria-label="Section ${index + 1}, ${spot.name}, ${money(spot.price)} for 50 days"><span class="slot-number">${index + 1}</span></button>`
   ).join("");
   selectedSpot = null;
   updateSelection();
