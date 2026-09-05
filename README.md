@@ -5,8 +5,8 @@ A static, GitHub Pages-ready website for selling physical advertising positions 
 ## What is included
 
 - Two studio-cleaned, horizontally aligned MacBook photos
-- Eight selectable ad positions per device
-- Dotted advertising boundary with numbered position circles
+- Eight selectable, full-size dotted ad sections per device
+- Numbered circles inside every advertising section
 - Live price and placement preview
 - Client-side logo upload preview
 - Booking details and payment summary

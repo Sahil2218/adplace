@@ -10,29 +10,29 @@ const devices = {
     image: "assets/macbook-midnight-studio.jpg",
     surface: { left: 18.5, top: 14.5, width: 63, height: 62 },
     positions: [
-      { x: 15, y: 20, name: "Top-left", tier: "One spot", price: 50 },
-      { x: 38, y: 20, name: "Upper-left", tier: "One spot", price: 50 },
-      { x: 62, y: 20, name: "Upper-right", tier: "One spot", price: 50 },
-      { x: 85, y: 20, name: "Top-right", tier: "One spot", price: 50 },
-      { x: 15, y: 76, name: "Lower-left", tier: "One spot", price: 50 },
-      { x: 38, y: 76, name: "Bottom-left", tier: "One spot", price: 50 },
-      { x: 62, y: 76, name: "Bottom-right", tier: "One spot", price: 50 },
-      { x: 85, y: 52, name: "Right-centre", tier: "One spot", price: 50 }
+      { x: 12.5, y: 25, name: "Top-left", tier: "One section", price: 50 },
+      { x: 37.5, y: 25, name: "Top-centre left", tier: "One section", price: 50 },
+      { x: 62.5, y: 25, name: "Top-centre right", tier: "One section", price: 50 },
+      { x: 87.5, y: 25, name: "Top-right", tier: "One section", price: 50 },
+      { x: 12.5, y: 75, name: "Bottom-left", tier: "One section", price: 50 },
+      { x: 37.5, y: 75, name: "Bottom-centre left", tier: "One section", price: 50 },
+      { x: 62.5, y: 75, name: "Bottom-centre right", tier: "One section", price: 50 },
+      { x: 87.5, y: 75, name: "Bottom-right", tier: "One section", price: 50 }
     ]
   },
   silver: {
-    name: "Silver MacBook",
+    name: "Sky Blue M4 MacBook Air",
     image: "assets/macbook-silver-studio.jpg",
     surface: { left: 15.5, top: 10.5, width: 69, height: 69 },
     positions: [
-      { x: 15, y: 20, name: "Top-left", tier: "One spot", price: 50 },
-      { x: 38, y: 20, name: "Upper-left", tier: "One spot", price: 50 },
-      { x: 62, y: 20, name: "Upper-right", tier: "One spot", price: 50 },
-      { x: 85, y: 20, name: "Top-right", tier: "One spot", price: 50 },
-      { x: 15, y: 78, name: "Lower-left", tier: "One spot", price: 50 },
-      { x: 38, y: 78, name: "Bottom-left", tier: "One spot", price: 50 },
-      { x: 62, y: 78, name: "Bottom-right", tier: "One spot", price: 50 },
-      { x: 85, y: 78, name: "Lower-right", tier: "One spot", price: 50 }
+      { x: 12.5, y: 25, name: "Top-left", tier: "One section", price: 50 },
+      { x: 37.5, y: 25, name: "Top-centre left", tier: "One section", price: 50 },
+      { x: 62.5, y: 25, name: "Top-centre right", tier: "One section", price: 50 },
+      { x: 87.5, y: 25, name: "Top-right", tier: "One section", price: 50 },
+      { x: 12.5, y: 75, name: "Bottom-left", tier: "One section", price: 50 },
+      { x: 37.5, y: 75, name: "Bottom-centre left", tier: "One section", price: 50 },
+      { x: 62.5, y: 75, name: "Bottom-centre right", tier: "One section", price: 50 },
+      { x: 87.5, y: 75, name: "Bottom-right", tier: "One section", price: 50 }
     ]
   }
 };
@@ -53,7 +53,7 @@ function renderDevice() {
   surface.style.width = `${device.surface.width}%`;
   surface.style.height = `${device.surface.height}%`;
   $("#slot-layer").innerHTML = device.positions.map((spot, index) =>
-    `<button class="slot" style="left:${spot.x}%;top:${spot.y}%" data-index="${index}" aria-label="Spot ${index + 1}, ${spot.name}, ${money(spot.price)} for 50 days">${index + 1}</button>`
+    `<button class="slot" data-index="${index}" aria-label="Section ${index + 1}, ${spot.name}, ${money(spot.price)} for 50 days"><span class="slot-number">${index + 1}</span></button>`
   ).join("");
   selectedSpot = null;
   updateSelection();
