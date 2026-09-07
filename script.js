@@ -7,16 +7,16 @@ const CONFIG = {
 const devices = {
   midnight: {
     name: "Midnight MacBook",
-    image: "assets/macbook-midnight-studio.jpg",
+    image: "assets/macbook-midnight-studio-corrected.jpg",
     surface: { left: 18.5, top: 14.5, width: 63, height: 62 },
     positions: [
-      { x: 13, y: 18, left: 2, top: 2, width: 22, height: 32, name: "Top-left", tier: "One section", price: 50 },
-      { x: 37, y: 18, left: 26, top: 2, width: 22, height: 32, name: "Top-centre left", tier: "One section", price: 50 },
-      { x: 61, y: 18, left: 50, top: 2, width: 22, height: 32, name: "Top-centre right", tier: "One section", price: 50 },
-      { x: 85, y: 18, left: 74, top: 2, width: 22, height: 32, name: "Top-right", tier: "One section", price: 50 },
-      { x: 13, y: 82, left: 2, top: 66, width: 22, height: 32, name: "Bottom-left", tier: "One section", price: 50 },
-      { x: 37, y: 82, left: 26, top: 66, width: 22, height: 32, name: "Bottom-centre left", tier: "One section", price: 50 },
-      { x: 61, y: 82, left: 50, top: 66, width: 22, height: 32, name: "Bottom-centre right", tier: "One section", price: 50 },
+      { x: 13, y: 15, left: 2, top: 2, width: 22, height: 26, name: "Top-left", tier: "One section", price: 50 },
+      { x: 37, y: 15, left: 26, top: 2, width: 22, height: 26, name: "Top-centre left", tier: "One section", price: 50 },
+      { x: 61, y: 15, left: 50, top: 2, width: 22, height: 26, name: "Top-centre right", tier: "One section", price: 50 },
+      { x: 85, y: 15, left: 74, top: 2, width: 22, height: 26, name: "Top-right", tier: "One section", price: 50 },
+      { x: 13, y: 85, left: 2, top: 72, width: 22, height: 26, name: "Bottom-left", tier: "One section", price: 50 },
+      { x: 37, y: 85, left: 26, top: 72, width: 22, height: 26, name: "Bottom-centre left", tier: "One section", price: 50 },
+      { x: 61, y: 85, left: 50, top: 72, width: 22, height: 26, name: "Bottom-centre right", tier: "One section", price: 50 },
       { x: 85, y: 50, left: 74, top: 38, width: 22, height: 24, name: "Right-centre", tier: "One section", price: 50 },
       { x: 13, y: 50, left: 2, top: 38, width: 22, height: 24, name: "Left-centre", tier: "One section", price: 50 }
     ]
@@ -26,14 +26,14 @@ const devices = {
     image: "assets/macbook-sky-blue-studio.jpg",
     surface: { left: 15.5, top: 10.5, width: 69, height: 69 },
     positions: [
-      { x: 13, y: 18, left: 2, top: 2, width: 22, height: 32, name: "Top-left", tier: "One section", price: 50 },
-      { x: 37, y: 18, left: 26, top: 2, width: 22, height: 32, name: "Top-centre left", tier: "One section", price: 50 },
-      { x: 61, y: 18, left: 50, top: 2, width: 22, height: 32, name: "Top-centre right", tier: "One section", price: 50 },
-      { x: 85, y: 18, left: 74, top: 2, width: 22, height: 32, name: "Top-right", tier: "One section", price: 50 },
-      { x: 13, y: 82, left: 2, top: 66, width: 22, height: 32, name: "Bottom-left", tier: "One section", price: 50 },
-      { x: 37, y: 82, left: 26, top: 66, width: 22, height: 32, name: "Bottom-centre left", tier: "One section", price: 50 },
-      { x: 61, y: 82, left: 50, top: 66, width: 22, height: 32, name: "Bottom-centre right", tier: "One section", price: 50 },
-      { x: 85, y: 82, left: 74, top: 66, width: 22, height: 32, name: "Bottom-right", tier: "One section", price: 50 },
+      { x: 13, y: 15, left: 2, top: 2, width: 22, height: 26, name: "Top-left", tier: "One section", price: 50 },
+      { x: 37, y: 15, left: 26, top: 2, width: 22, height: 26, name: "Top-centre left", tier: "One section", price: 50 },
+      { x: 61, y: 15, left: 50, top: 2, width: 22, height: 26, name: "Top-centre right", tier: "One section", price: 50 },
+      { x: 85, y: 15, left: 74, top: 2, width: 22, height: 26, name: "Top-right", tier: "One section", price: 50 },
+      { x: 13, y: 85, left: 2, top: 72, width: 22, height: 26, name: "Bottom-left", tier: "One section", price: 50 },
+      { x: 37, y: 85, left: 26, top: 72, width: 22, height: 26, name: "Bottom-centre left", tier: "One section", price: 50 },
+      { x: 61, y: 85, left: 50, top: 72, width: 22, height: 26, name: "Bottom-centre right", tier: "One section", price: 50 },
+      { x: 85, y: 85, left: 74, top: 72, width: 22, height: 26, name: "Bottom-right", tier: "One section", price: 50 },
       { x: 13, y: 50, left: 2, top: 38, width: 22, height: 24, name: "Left-centre", tier: "One section", price: 50 },
       { x: 85, y: 50, left: 74, top: 38, width: 22, height: 24, name: "Right-centre", tier: "One section", price: 50 }
     ]
