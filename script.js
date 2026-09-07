@@ -7,7 +7,7 @@ const CONFIG = {
 const devices = {
   midnight: {
     name: "Midnight MacBook",
-    image: "assets/macbook-midnight-studio-corrected.jpg",
+    image: "assets/macbook-midnight-studio-positioned.jpg",
     surface: { left: 18.5, top: 14.5, width: 63, height: 62 },
     positions: [
       { x: 13, y: 15, left: 2, top: 2, width: 22, height: 26, name: "Top-left", tier: "One section", price: 50 },
